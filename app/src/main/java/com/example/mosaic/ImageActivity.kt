@@ -4,10 +4,10 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -40,6 +39,13 @@ class ImageActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            BackHandler {
+                val navigate = Intent(
+                    this@ImageActivity,
+                    MainActivity::class.java
+                )
+                startActivity(navigate)
+            }
             Column (
                 modifier = Modifier
                     .fillMaxSize()

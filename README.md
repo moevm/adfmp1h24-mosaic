@@ -1,1 +1,0 @@
-# adfmp1h24-mosaic

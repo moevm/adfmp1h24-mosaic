@@ -3,4 +3,5 @@
     <string name="title_activity_level">LevelActivity</string>
     <string name="title_activity_complexity">ComplexityActivity</string>
     <string name="title_activity_image">ImageActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
 </resources>

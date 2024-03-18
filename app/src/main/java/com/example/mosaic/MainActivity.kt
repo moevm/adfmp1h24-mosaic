@@ -133,6 +133,25 @@ class MainActivity : ComponentActivity() {
                     Button(
                         modifier = Modifier.fillMaxSize(),
                         onClick = {
+                            val navigate = Intent(
+                                this@MainActivity,
+                                AboutActivity::class.java
+                            )
+                            startActivity(navigate)
+                        }
+                    ) {
+                        Text(text = "Описание")
+                    }
+                }
+                Box(
+                    modifier = Modifier
+                        .height(70.dp)
+                        .width(200.dp)
+                        .padding(10.dp)
+                ) {
+                    Button(
+                        modifier = Modifier.fillMaxSize(),
+                        onClick = {
                             finishAffinity()
                         }
                     ) {
