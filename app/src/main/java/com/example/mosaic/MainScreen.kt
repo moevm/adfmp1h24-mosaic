@@ -164,72 +164,71 @@ fun MainScreen (
         val puzzles = mainViewModel.puzzles
         val addedPuzzles = mainViewModel.addedPuzzles
         if (addedPuzzles.size != cols * rows) {
-            LazyRow (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .widthIn(min=screenWidth.dp)
-                    .padding(
-                        vertical = 20.dp,
-                    ),
-                verticalAlignment = Alignment.CenterVertically,
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                item {
-                    IconButton(
+                IconButton(
+                    modifier = Modifier
+                        .size((if (addedPuzzles.size < cols * rows - 3) 40 else 0).dp),
+                    onClick = {  }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.KeyboardArrowLeft,
+                        contentDescription = "",
+                        tint = Color.White,
                         modifier = Modifier
-                            .size((if (addedPuzzles.size < cols * rows - 3) 40 else 0).dp),
-                        onClick = {  }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.KeyboardArrowRight,
-                            contentDescription = "",
-                            tint = Color.White,
-                            modifier = Modifier
-                                .size((if (addedPuzzles.size < cols * rows - 3) 40 else 0).dp)
-                        )
-                    }
+                            .size((if (addedPuzzles.size < cols * rows - 3) 40 else 0).dp)
+                    )
                 }
-                items(puzzles) { puzzle ->
-                    if (!addedPuzzles.contains(puzzle.id)) {
-                        Box (
-                            modifier = Modifier
-                                .height(70.dp)
-                                .width((70 + ((screenWidth - 210) / 3)).dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            DragTarget (
-                                dataToDrop = puzzle,
-                                viewModel = mainViewModel
+                LazyRow (
+                    modifier = Modifier.weight(1f)
+                        .padding(
+                            vertical = 20.dp
+                        ),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    items(puzzles) { puzzle ->
+                        if (!addedPuzzles.contains(puzzle.id)) {
+                            Box (
+                                modifier = Modifier
+                                    .height(70.dp)
+                                    .width((70 + ((screenWidth - 210) / 3)).dp),
+                                contentAlignment = Alignment.Center
                             ) {
-                                Box (
-                                    modifier = Modifier
-                                        .size(70.dp),
-                                    contentAlignment = Alignment.Center
+                                DragTarget (
+                                    dataToDrop = puzzle,
+                                    viewModel = mainViewModel
                                 ) {
-                                    Image (
-                                        bitmap = originalBitmap[puzzle.id].asImageBitmap(),
-                                        contentDescription = null,
-                                        modifier = Modifier.fillMaxSize(),
-                                        contentScale = ContentScale.FillBounds
-                                    )
+                                    Box (
+                                        modifier = Modifier
+                                            .size(70.dp),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Image (
+                                            bitmap = originalBitmap[puzzle.id].asImageBitmap(),
+                                            contentDescription = null,
+                                            modifier = Modifier.fillMaxSize(),
+                                            contentScale = ContentScale.FillBounds
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                item {
-                    IconButton(
+                IconButton(
+                    modifier = Modifier
+                        .size((if (addedPuzzles.size < cols * rows - 3) 40 else 0).dp),
+                    onClick = {  }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.KeyboardArrowRight,
+                        contentDescription = "",
+                        tint = Color.White,
                         modifier = Modifier
-                            .size((if (addedPuzzles.size < cols * rows - 3) 40 else 0).dp),
-                        onClick = {  }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.KeyboardArrowLeft,
-                            contentDescription = "",
-                            tint = Color.White,
-                            modifier = Modifier
-                                .size((if (addedPuzzles.size < cols * rows - 3) 40 else 0).dp)
-                        )
-                    }
+                            .size((if (addedPuzzles.size < cols * rows - 3) 40 else 0).dp)
+                    )
                 }
             }
         } else {
